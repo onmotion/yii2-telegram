@@ -24,6 +24,7 @@ return [
 	'You are already logged in as ' => 'Вы уже вошли в систему как ',
 	'You are not logged in.' => 'Вы не вошли в систему.',
 	'You will no longer receive messages.' => 'Вы больше не будете получать сообщения.',
-	'Logout from the support system.' => 'Выход из системы поддержки.'
+	'Logout from the support system.' => 'Выход из системы поддержки.',
+	'Online support' => 'Онлайн помощь'
 
 ];

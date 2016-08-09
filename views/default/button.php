@@ -6,5 +6,6 @@
  */
 
 use yii\helpers\Html;
+use Yii;
 
-echo Html::button('<i class="glyphicon glyphicon-send"></i> Онлайн помощь', ['class' => 'btn btn-primary', 'id' => 'tlgrm-init-btn']);
+echo Html::button('<i class="glyphicon glyphicon-send"></i> ' . Yii::t('tlgrm', 'Online support'), ['class' => 'btn btn-primary', 'id' => 'tlgrm-init-btn']);

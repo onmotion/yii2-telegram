@@ -9,6 +9,7 @@ namespace onmotion\telegram;
 use yii\helpers\Html;
 use yii\web\Cookie;
 use yii\widgets\ActiveForm;
+use Yii;
 
 /**
  * Class Telegram
@@ -21,6 +22,13 @@ class Telegram extends \yii\base\Widget
 
     public function init()
     {
+        if (empty(\Yii::$app->i18n->translations['tlgrm'])) {
+            \Yii::$app->i18n->translations['tlgrm'] = [
+                'class' => 'yii\i18n\PhpMessageSource',
+                'basePath' => __DIR__ . '/messages',
+                //'forceTranslation' => true,
+            ];
+        }
         parent::init();
     }
 
@@ -28,14 +36,13 @@ class Telegram extends \yii\base\Widget
     {
         $view = $this->getView();
         TelegramAsset::register($view);
-     //   $this->renderChat();
         $this->renderInitiateBtn();
     }
     
 
     private function renderInitiateBtn()
     {
-        echo Html::button('<i class="glyphicon glyphicon-send"></i> Онлайн помощь', ['class' => 'btn btn-primary', 'id' => 'tlgrm-init-btn']);
+        echo Html::button('<i class="glyphicon glyphicon-send"></i> ' . Yii::t('tlgrm', 'Online support') , ['class' => 'btn btn-primary', 'id' => 'tlgrm-init-btn']);
     }
 
 }

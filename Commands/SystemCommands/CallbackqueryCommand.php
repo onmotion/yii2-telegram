@@ -14,6 +14,7 @@ use onmotion\telegram\models\AuthorizedManagerChat;
 use onmotion\telegram\models\Usernames;
 use Longman\TelegramBot\Commands\SystemCommand;
 use Longman\TelegramBot\Request;
+use Yii;
 
 /**
  * Callback query command
@@ -50,7 +51,7 @@ class CallbackqueryCommand extends SystemCommand
             $authChat = AuthorizedManagerChat::findOne(intval($chatId));
             $authChat->client_chat_id = $callbackDataArr[1];
             if ($authChat->validate() && $authChat->save()){
-                $data['text'] = 'Начат диалог с чатом ' . $callbackDataArr[1];
+                $data['text'] = Yii::t('tlgrm', 'Start conversation with chat ') . $callbackDataArr[1];
                 Request::answerCallbackQuery($data);
                 unset($data['show_alert'], $data['callback_query_id']);
                 $data['chat_id'] = $chatId;
@@ -59,9 +60,9 @@ class CallbackqueryCommand extends SystemCommand
                 try {
                     $authChat = AuthorizedManagerChat::find()->where(['client_chat_id' => $callbackDataArr[1]])->one();
                     $manager = Usernames::find()->where(['chat_id' => $authChat->chat_id])->one();
-                    $data['text'] = 'В данном чате уже ведется диалог. Ответственный: ' . ($manager->username ? $manager->username : "not_found");
+                    $data['text'] = Yii::t('tlgrm', 'Conversation already in progress in this chat. Responsible: ') . ($manager->username ? $manager->username : "not_found");
                 } catch (\Exception $e){
-                    $data['text'] = 'Вроде в данном чате уже ведется диалог. Не могу найти ответственного в базе...';
+                    $data['text'] = Yii::t('tlgrm', 'Seems conversation already in progress in this chat.');
                 }
                     unset($data['show_alert'], $data['callback_query_id']);
                     $data['chat_id'] = $chatId;
@@ -69,7 +70,7 @@ class CallbackqueryCommand extends SystemCommand
                 return Request::sendMessage($data);
             }
         } else {
-            $data['text'] = 'Неизвестная команда.';
+            $data['text'] = Yii::t('tlgrm', 'Unknown command.');
             $data['show_alert'] = false;
             return Request::answerCallbackQuery($data);
         }

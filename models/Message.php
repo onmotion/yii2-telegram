@@ -19,16 +19,9 @@ class Message extends \yii\db\ActiveRecord
      */
     public static function tableName()
     {
-        return 'messages';
+        return 'tlgrm_messages';
     }
-
-    /**
-     * @return \yii\db\Connection the database connection used by this AR class.
-     */
-    public static function getDb()
-    {
-        return Yii::$app->get('db7');
-    }
+    
 
     /**
      * @inheritdoc

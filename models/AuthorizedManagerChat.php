@@ -17,15 +17,7 @@ class AuthorizedManagerChat extends \yii\db\ActiveRecord
      */
     public static function tableName()
     {
-        return 'authorized_mngr_chats';
-    }
-
-    /**
-     * @return \yii\db\Connection the database connection used by this AR class.
-     */
-    public static function getDb()
-    {
-        return Yii::$app->get('db7');
+        return 'tlgrm_auth_mngr_chats';
     }
 
     /**

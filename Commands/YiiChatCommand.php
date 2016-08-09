@@ -9,6 +9,7 @@ use Longman\TelegramBot\Entities\InlineKeyboardMarkup;
 use Longman\TelegramBot\Request;
 use Longman\TelegramBot\Telegram;
 use yii\base\UserException;
+use Yii;
 
 class YiiChatCommand
 {
@@ -52,7 +53,7 @@ class YiiChatCommand
             if (empty($authChats)) {
                 $waitMessage = new Message();
                 $waitMessage->client_chat_id = $tlgrmChatId;
-                $waitMessage->message = 'На данный момент нет свободных операторов. Попробуйте написать позже.';
+                $waitMessage->message = Yii::t('tlgrm', 'At the moment, there are no available operators. Please, try to write later.');
                 $waitMessage->direction = 1;
                 $waitMessage->time = date("Y-m-d H:i:s", time() + 1);
                 $waitMessage->save();
@@ -61,7 +62,7 @@ class YiiChatCommand
             foreach ($authChats as $authChat) {
                 $data['chat_id'] = $authChat->chat_id;
                 $inline_keyboard = [
-                    new InlineKeyboardButton(['text' => 'Начать диалог', 'callback_data' => 'client_chat_id ' . $tlgrmChatId]),
+                    new InlineKeyboardButton(['text' => Yii::t('tlgrm', 'Start conversation'), 'callback_data' => 'client_chat_id ' . $tlgrmChatId]),
                 ];
                 $data['reply_markup'] = new InlineKeyboardMarkup(
                     ['inline_keyboard' => [$inline_keyboard]]);

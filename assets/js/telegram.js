@@ -56,7 +56,6 @@ $(document).ready(function () {
             success: function success(response) {
                 appendOutgoing(response);
                 chatFlow.animate({scrollTop: chatFlow[0].scrollHeight}, "slow");
-                console.log(response);
             },
             error: function error(xhr, textStatus, errorThrown) {
                 console.log(xhr);
@@ -77,16 +76,14 @@ $(document).ready(function () {
             data: {},
             dataType: 'json',
             success: function success(data) {
-                console.log(data);
                 if (data.length > 0) {
                     $.each(data, function (index, element) {
-                        console.log(element);
                         element.direction == 1 ?
                             appendIncoming(element) :
                             appendOutgoing(element);
                     });
                 } else {
-                    appendIncoming({time: "0000", message: "Напишите здесь свой вопрос..."});
+                    appendIncoming({time: "0000-00-00", message: "Напишите здесь свой вопрос..."});
                 }
                 chatFlow.animate({scrollTop: chatFlow[0].scrollHeight}, "slow");
                 getUpdates();
@@ -108,7 +105,6 @@ $(document).ready(function () {
                 beforeSend: function () {
                 },
                 success: function success(response) {
-                    console.log(response);
                     if (response) {
                         $.each(response, function (index, element) {
                             if (element.direction == 1)

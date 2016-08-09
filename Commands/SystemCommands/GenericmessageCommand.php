@@ -80,7 +80,7 @@ class GenericmessageCommand extends SystemCommand
             return Request::emptyResponse();
         }
 
-        $dbUser = Actions::findOne($userId);
+        $dbUser = Actions::findOne($chatId);
         $text = trim($this->getMessage()->getText(true));
         if ($dbUser && $dbUser->action == 'login') {
             if ($text == PASSPHRASE) {
@@ -92,18 +92,18 @@ class GenericmessageCommand extends SystemCommand
                     $authChat->save();
                     $data = [
                         'chat_id' =>  $chatId,
-                        'text'    =>  'Верная фраза, теперь вы будете получать сообщения.',
+                        'text'    =>  Yii::t('tlgrm', "Passphrase is correct, now you'll get the messages."),
                     ];
                 }else{
                     $data = [
                         'chat_id' =>  $chatId,
-                        'text'    =>  'Вы уже подписаны на получение сообщений.',
+                        'text'    =>  Yii::t('tlgrm', "You are already subscribed to receive messages."),
                     ];
                 }
             }else{
                 $data = [
                     'chat_id' =>  $chatId,
-                    'text'    =>  'Неверная фраза.',
+                    'text'    => Yii::t('tlgrm', 'Incorrect passphrase.'),
                 ];
             }
             $dbUser->action = null;
@@ -111,7 +111,7 @@ class GenericmessageCommand extends SystemCommand
         } else {
             $data = [
                 'chat_id' => $chatId,
-                'text' => 'Попробуйте ввести команду, например /help',
+                'text' => Yii::t('tlgrm', 'Try to enter the command, such as /help'),
             ];
         }
 

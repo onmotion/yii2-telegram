@@ -28,6 +28,15 @@ class Module extends \yii\base\Module
             throw new UserException('You must set PASSPHRASE');
         parent::init();
 
+        // set up i8n
+        if (empty(\Yii::$app->i18n->translations['tlgrm'])) {
+            \Yii::$app->i18n->translations['tlgrm'] = [
+                'class' => 'yii\i18n\PhpMessageSource',
+                'basePath' => __DIR__ . '/messages',
+                //'forceTranslation' => true,
+            ];
+        }
+
         $view = \Yii::$app->getView();
         TelegramAsset::register($view);
         // custom initialization code goes here

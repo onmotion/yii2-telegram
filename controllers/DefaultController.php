@@ -49,7 +49,7 @@ class DefaultController extends Controller
                 echo $result->getDescription();
             }
         } catch (TelegramException $e) {
-            echo $e;
+            echo $e->getMessage();
         }
         return null;
     }
@@ -65,7 +65,7 @@ class DefaultController extends Controller
                 echo $result->getDescription();
             }
         } catch (TelegramException $e) {
-            echo $e;
+            echo $e->getMessage();
         }
     }
 
@@ -83,7 +83,7 @@ class DefaultController extends Controller
         } catch (TelegramException $e) {
             // Silence is golden!
             // log telegram errors
-            var_dump($e);
+            var_dump($e->getMessage());
         }
         return null;
     }

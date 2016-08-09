@@ -12,6 +12,7 @@ namespace Longman\TelegramBot\Commands\UserCommands;
 
 use Longman\TelegramBot\Commands\UserCommand;
 use Longman\TelegramBot\Request;
+use Yii;
 
 /**
  * User "/help" command
@@ -22,10 +23,16 @@ class HelpCommand extends UserCommand
      * {@inheritdoc}
      */
     protected $name = 'help';
-    protected $description = 'Show bot commands help';
+    protected $description = '';
     protected $usage = '/help or /help <command>';
     protected $version = '1.0.1';
     /**#@-*/
+
+    public function __construct($telegram, $update = NULL)
+    {
+        $this->description = \Yii::t('tlgrm', 'Show bot commands help');
+        parent::__construct($telegram, $update);
+    }
 
     /**
      * {@inheritdoc}
@@ -60,7 +67,7 @@ class HelpCommand extends UserCommand
                 $text .= 'Description: ' . $command->getDescription() . "\n";
                 $text .= 'Usage: ' . $command->getUsage();
             } else {
-                $text = 'No help available: Command /' . $command . ' не найдена';
+                $text = 'No help available: Command /' . $command . ' not found.';
             }
         }
 

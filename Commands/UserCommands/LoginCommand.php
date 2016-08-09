@@ -1,13 +1,4 @@
 <?php
-/**
- * This file is part of the TelegramBot package.
- *
- * (c) Avtandil Kikabidze aka LONGMAN <akalongman@gmail.com>
- *
- * For the full copyright and license information, please view the LICENSE
- * file that was distributed with this source code.
- */
-
 
 namespace Longman\TelegramBot\Commands\UserCommands;
 
@@ -20,7 +11,7 @@ use Longman\TelegramBot\Request;
 use Yii;
 
 /**
- * User "/echo" command
+ * User "/login" command
  */
 class LoginCommand extends UserCommand
 {
@@ -28,11 +19,15 @@ class LoginCommand extends UserCommand
      * {@inheritdoc}
      */
     protected $name = 'login';
-    protected $description = 'Залогиниться в системе для получения сообщений.';
+    protected $description = '';
     protected $usage = '/login';
     protected $version = '1.0.0';
-
-    /**#@-*/
+    
+    public function __construct($telegram, $update = NULL)
+    {
+        $this->description = \Yii::t('tlgrm', 'Login to the support system');
+        parent::__construct($telegram, $update);
+    }
 
     /**
      * {@inheritdoc}
@@ -43,13 +38,13 @@ class LoginCommand extends UserCommand
         $chat = $message->getChat();
         $username = $chat->getFirstName() . ' ' . $chat->getLastName() . ' (@' . $chat->getUsername() . ')';
         $chat_id = $chat->getId();
-        $text = 'Введите passphrase:';
+        $text = Yii::t('tlgrm', 'Enter passphrase:');
         $userId = $message->getFrom()->getId();
         $authChat = AuthorizedManagerChat::findOne($chat_id);
         if ($authChat) {
             $data = [
                 'chat_id' => $chat_id,
-                'text' => 'Вы уже вошли в систему как ' . $username,
+                'text' => Yii::t('tlgrm', 'You are already logged in as ') . $username,
             ];
             return Request::sendMessage($data);
         } else {

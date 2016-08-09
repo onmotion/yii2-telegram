@@ -1,12 +1,16 @@
-# yii2-telegram
+# **Telegram support Bot for Yii2**
 **Support chat for site based on Telegram bot**
 
-Installation
+The Bot logic based on [akalongman/php-telegram-bot](https://github.com/akalongman/php-telegram-bot), so you can read Instructions by longman how to register Telegram Bot and etc.
+
+***Now only telegram webhook api support. You need SSL sert! Doesn't work on http!*** 
+
+**Installation**
 ------------
 
 The preferred way to install this extension is through [composer](http://getcomposer.org/download/).
 
-Either run
+Run
 
 
     composer require onmotion/yii2-telegram
@@ -34,6 +38,18 @@ run migrations:
 
 go to https://yourhost.com/telegram/default/set-webhook
 
-Now you can place where you want 
+Now you can place where you want
 
-   echo \onmotion\telegram\Telegram::widget(); //that add chat button in the page
+    echo \onmotion\telegram\Telegram::widget(); //that add chat button in the page
+
+in bottom right corner you can see:
+
+![chat button](https://github.com/onmotion/yii2-telegram/blob/wiki/_wiki/04.png?raw=true)
+
+if you click it:
+
+![client chat](https://github.com/onmotion/yii2-telegram/blob/wiki/_wiki/03.png?raw=true)
+
+and server side:
+
+![client chat](https://github.com/onmotion/yii2-telegram/blob/wiki/_wiki/02.png?raw=true)

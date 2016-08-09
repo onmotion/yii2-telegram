@@ -1,11 +1,9 @@
 <?php
 /**
- * Created by PhpStorm.
- * User: kozhevnikov
+ * @copyright Copyright &copy; Alexandr Kozhevnikov (onmotion)
+ * @package yii2-telegram
  * Date: 02.08.2016
- * Time: 15:52
  */
-
 namespace onmotion\telegram;
 
 use yii\web\AssetBundle;

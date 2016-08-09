@@ -1,9 +1,8 @@
 <?php
 /**
- * Created by PhpStorm.
- * User: kozhevnikov
+ * @copyright Copyright &copy; Alexandr Kozhevnikov (onmotion)
+ * @package yii2-telegram
  * Date: 02.08.2016
- * Time: 17:14
  */
 
 namespace onmotion\telegram\controllers;
@@ -13,11 +12,26 @@ use onmotion\telegram\Commands\YiiChatCommand;
 use onmotion\telegram\models\Message;
 use Longman\TelegramBot\Exception\TelegramException;
 use yii\base\UserException;
+use yii\filters\VerbFilter;
 use yii\web\Controller;
 use yii\web\Response;
 
 class ChatController extends Controller
 {
+    public function behaviors()
+    {
+        return [
+            'verbs' => [
+                'class' => VerbFilter::className(),
+                'actions' => [
+                    'send-msg' => ['post'],
+                    'get-all-messages' => ['post'],
+                    'get-last-messages' => ['post'],
+                ],
+            ],
+        ];
+    }
+
     public function actionSendMsg()
     {
         \Yii::$app->response->format = Response::FORMAT_JSON;

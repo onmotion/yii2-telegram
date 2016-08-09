@@ -1,9 +1,8 @@
 <?php
 /**
- * Created by PhpStorm.
- * User: kozhevnikov
- * Date: 08.08.2016
- * Time: 10:06
+ * @copyright Copyright &copy; Alexandr Kozhevnikov (onmotion)
+ * @package yii2-telegram
+ * Date: 02.08.2016
  */
 
 use yii\helpers\Html;

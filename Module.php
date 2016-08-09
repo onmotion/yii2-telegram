@@ -1,5 +1,9 @@
 <?php
-
+/**
+ * @copyright Copyright &copy; Alexandr Kozhevnikov (onmotion)
+ * @package yii2-telegram
+ * Date: 02.08.2016
+ */
 namespace onmotion\telegram;
 use yii\base\UserException;
 

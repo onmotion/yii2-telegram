@@ -1,9 +1,15 @@
 <?php
+/**
+ * @copyright Copyright &copy; Alexandr Kozhevnikov (onmotion)
+ * @package yii2-telegram
+ * Date: 02.08.2016
+ */
 
 namespace onmotion\telegram\controllers;
 
 use Longman\TelegramBot\Exception\TelegramException;
 use Longman\TelegramBot\Telegram;
+use yii\filters\VerbFilter;
 use yii\web\Controller;
 
 define('API_KEY', \Yii::$app->modules['telegram']->API_KEY);
@@ -17,6 +23,20 @@ define('PASSPHRASE', \Yii::$app->modules['telegram']->PASSPHRASE);
  */
 class DefaultController extends Controller
 {
+
+    public function behaviors()
+    {
+        return [
+            'verbs' => [
+                'class' => VerbFilter::className(),
+                'actions' => [
+                    'destroy-chat' => ['post'],
+                    'init-chat' => ['post'],
+                    'hook' => ['post'],
+                ],
+            ],
+        ];
+    }
 
     public function actionDestroyChat()
     {

@@ -25,6 +25,7 @@ return [
 	'You are not logged in.' => 'Вы не вошли в систему.',
 	'You will no longer receive messages.' => 'Вы больше не будете получать сообщения.',
 	'Logout from the support system.' => 'Выход из системы поддержки.',
-	'Online support' => 'Онлайн помощь'
+	'Online support' => 'Онлайн помощь',
+	" writes:" => ' пишет:'
 
 ];

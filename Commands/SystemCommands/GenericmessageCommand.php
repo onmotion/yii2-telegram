@@ -15,6 +15,7 @@ use onmotion\telegram\models\AuthorizedChat;
 use onmotion\telegram\models\AuthorizedManagerChat;
 use onmotion\telegram\models\AuthorizedUsers;
 use onmotion\telegram\models\Message;
+use onmotion\telegram\models\Usernames;
 use onmotion\telegram\TelegramVars;
 use Longman\TelegramBot\Conversation;
 use Longman\TelegramBot\Entities\ServerResponse;
@@ -58,7 +59,9 @@ class GenericmessageCommand extends SystemCommand
 
         //If a conversation is busy, execute the conversation command after handling the message
         $userId = $this->getMessage()->getFrom()->getId();
-        $chatId = $this->getMessage()->getChat()->getId();
+        $chat = $this->getMessage()->getChat();
+        $chatId = $chat->getId();
+        $username = $chat->getFirstName() . ' ' . $chat->getLastName() . ' (@' . $chat->getUsername() . ')';
         $conversation = new Conversation(
             $userId,
             $chatId
@@ -84,16 +87,21 @@ class GenericmessageCommand extends SystemCommand
         $text = trim($this->getMessage()->getText(true));
         if ($dbUser && $dbUser->action == 'login') {
             if ($text == PASSPHRASE) {
-
-                $authChat = AuthorizedManagerChat::findOne($chatId);
-                if (!$authChat){
-                    $authChat = new AuthorizedManagerChat();
-                    $authChat->chat_id = $chatId;
-                    $authChat->save();
+                $_authChat = AuthorizedManagerChat::findOne($chatId);
+                if ($_authChat == null){
+                    $_authChat = new AuthorizedManagerChat();
+                    $_authChat->chat_id = $chatId;
+                    $_authChat->save();
                     $data = [
                         'chat_id' =>  $chatId,
                         'text'    =>  Yii::t('tlgrm', "Passphrase is correct, now you'll get the messages."),
                     ];
+                    //связь пользователя с чатом
+                    $dbUserneme = new Usernames();
+                    $dbUserneme->chat_id = $chatId;
+                    $dbUserneme->user_id = $userId;
+                    $dbUserneme->username = $username;
+                    $dbUserneme->save();
                 }else{
                     $data = [
                         'chat_id' =>  $chatId,

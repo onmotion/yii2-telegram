@@ -61,12 +61,6 @@ class LoginCommand extends UserCommand
                 'chat_id' => $chat_id,
                 'text' => $text,
             ];
-            //связь пользователя с чатом
-            $dbUser = new Usernames();
-            $dbUser->chat_id = $chat_id;
-            $dbUser->user_id = $userId;
-            $dbUser->username = $username;
-            $dbUser->save();
             
             return Request::sendMessage($data);
 

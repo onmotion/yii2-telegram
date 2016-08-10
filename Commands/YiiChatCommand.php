@@ -63,6 +63,12 @@ class YiiChatCommand
                 $waitMessage->save();
                 return $message; //нет свободных
             }
+            try{
+                $yiiUsername = Yii::$app->getUser()->getIdentity()->username;
+            } catch (\Exception $e){
+                $yiiUsername = 'guest';
+            }
+            $data['text'] = $yiiUsername . Yii::t('tlgrm', " writes:") . "\r\n>" . $data['text'];
             foreach ($authChats as $authChat) {
                 $data['chat_id'] = $authChat->chat_id;
                 $inline_keyboard = [

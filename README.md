@@ -3,7 +3,7 @@
 
 The Bot logic based on [akalongman/php-telegram-bot](https://github.com/akalongman/php-telegram-bot), so you can read Instructions by longman how to register Telegram Bot and etc.
 
-***Now only telegram webhook api support. You need SSL sert! Doesn't work on http!*** 
+***Now only telegram webhook api support. You need SSL cert! Doesn't work on http!*** 
 
 **Installation**
 ------------
@@ -16,8 +16,7 @@ Run
     composer require onmotion/yii2-telegram
 
  
-
- add to your config:
+ add to your web config:
   
      'modules' => [
 	     //...
@@ -30,6 +29,20 @@ Run
         ]
 	    //more...
      ]
+     
+ and to console config:
+ 
+     'bootstrap' => [   
+     //other bootstrap components...
+                    'telegram'],
+     'modules' => [
+             //...
+         'telegram' => [
+             'class' => 'onmotion\telegram\Module',
+             'API_KEY' => 'forexample241875489:AdfgdfFuVJdsKa1cycuxra36g4dfgt66',
+             'BOT_NAME' => 'YourBotName_bot',
+         ]
+     ],       
 
 run migrations:
 
@@ -53,3 +66,8 @@ if you click it:
 and server side:
 
 ![client chat](https://github.com/onmotion/yii2-telegram/blob/wiki/_wiki/02.png?raw=true)
+
+If you want to limit the storage period of messages history, add to you crontab:
+
+    #leave 5 days (if empty - default = 7)
+    php yii telegram/messages/clean 5

@@ -29,6 +29,7 @@ class Telegram extends \yii\base\Widget
                 //'forceTranslation' => true,
             ];
         }
+
         parent::init();
     }
 

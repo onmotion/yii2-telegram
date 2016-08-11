@@ -10,7 +10,7 @@ use yii\base\UserException;
 /**
  * telegram module definition class
  */
-class Module extends \yii\base\Module
+class Module extends \yii\base\Module implements \yii\base\BootstrapInterface
 {
     public $API_KEY = null;
     public $BOT_NAME = null;
@@ -40,12 +40,13 @@ class Module extends \yii\base\Module
                 //'forceTranslation' => true,
             ];
         }
+    
+    }
 
-        $view = \Yii::$app->getView();
-        TelegramAsset::register($view);
-        // custom initialization code goes here
-        \Yii::$app->getUrlManager()->addRules([
-            '<module:telegram>/<action>' => 'telegram/default/<action>',
-        ], false);
+    public function bootstrap($app)
+    {
+        if ($app instanceof \yii\console\Application) {
+            $this->controllerNamespace = 'onmotion\telegram\commands';
+        }
     }
 }

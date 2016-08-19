@@ -43,7 +43,7 @@ class Telegram extends \yii\base\Widget
 
     private function renderInitiateBtn()
     {
-        echo Html::button('<i class="glyphicon glyphicon-send"></i> ' . Yii::t('tlgrm', 'Online support') , ['class' => 'btn btn-primary', 'id' => 'tlgrm-init-btn']);
+        include (__DIR__ . '/views/default/button.php');
     }
 
 }

@@ -16,6 +16,7 @@ class Module extends \yii\base\Module implements \yii\base\BootstrapInterface
     public $BOT_NAME = null;
     public $hook_url = null;
     public $PASSPHRASE = null;
+    public $db = 'db';
     /**
      * @inheritdoc
      */

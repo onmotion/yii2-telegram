@@ -6,6 +6,7 @@
  */
 namespace onmotion\telegram\models;
 
+use onmotion\telegram\Telegram;
 use Yii;
 
 /**
@@ -25,7 +26,15 @@ class Message extends \yii\db\ActiveRecord
     {
         return 'tlgrm_messages';
     }
-    
+
+    /**
+     * @return \yii\db\Connection the database connection used by this AR class.
+     */
+    public static function getDb()
+    {
+        $db = \Yii::$app->controller->module->db;
+        return Yii::$app->get($db);
+    }
 
     /**
      * @inheritdoc

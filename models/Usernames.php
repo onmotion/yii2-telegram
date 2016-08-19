@@ -26,6 +26,15 @@ class Usernames extends \yii\db\ActiveRecord
     }
 
     /**
+     * @return \yii\db\Connection the database connection used by this AR class.
+     */
+    public static function getDb()
+    {
+        $db = \Yii::$app->controller->module->db;
+        return Yii::$app->get($db);
+    }
+
+    /**
      * @inheritdoc
      */
     public function rules()

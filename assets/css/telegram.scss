@@ -87,3 +87,8 @@
   position: fixed;
   right: 10px;
 }
+@media (max-width: 400px) {
+  #tlgrm-init-btn span{
+    display: none;
+  }
+}

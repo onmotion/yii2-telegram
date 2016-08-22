@@ -63,7 +63,8 @@ $(document).ready(function () {
         });
     });
     $(document).on('keydown', '#tlgrm-chat-msg', function (e) {
-        if (event.keyCode == 13) {
+        var code = e.keyCode || e.charCode;
+        if (code == 13) {
             if (messageInput.val() == "") return false;
             $('#tlgrm-chat-form').submit();
             return false;

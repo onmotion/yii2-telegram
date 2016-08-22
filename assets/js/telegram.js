@@ -19,6 +19,7 @@ $(document).ready(function () {
                 that.replaceWith(data);
                 messageInput = $('#tlgrm-chat-msg');
                 chatFlow = $('#tlgrm-chat-flow');
+                chatFlow.niceScroll({cursorcolor:"#999", cursorwidth: "5px"});
                 getAllMessages();
             },
             error: function error(xhr, textStatus, errorThrown) {

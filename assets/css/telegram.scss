@@ -7,7 +7,6 @@
   bottom: 10px;
   position: fixed;
   right: 10px;
-  border: 1px solid #ccc;
   #tlgrm-chat-head{
     height: 50px;
     background: #337ab7;
@@ -71,6 +70,7 @@
       float: right;
       height: 80px;
       width: 38px;
+      padding: 0;
     }
     #tlgrm-chat-msg{
       height: 80px;
@@ -78,6 +78,7 @@
       width: 260px;
       float: left;
       resize: none;
+      border: 1px solid #fff;
     }
   }
 }

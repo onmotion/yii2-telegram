@@ -16,6 +16,7 @@ class TelegramAsset extends AssetBundle
     ];
     public $js = [
         'js/telegram.js',
+        'js/jquery.nicescroll.min.js',
     ];
     public $depends = [
         'yii\web\YiiAsset',

@@ -38,6 +38,14 @@ class DefaultController extends Controller
         ];
     }
 
+    public function beforeAction($action)
+    {            
+        if ($action->id == 'hook') {
+            $this->enableCsrfValidation = false;
+        }
+        return parent::beforeAction($action);
+    }
+
     public function actionDestroyChat()
     {
         return $this->renderPartial('button');

@@ -9,8 +9,10 @@ namespace onmotion\telegram\controllers;
 
 use Longman\TelegramBot\Exception\TelegramException;
 use Longman\TelegramBot\Telegram;
+use yii\base\UserException;
 use yii\filters\VerbFilter;
 use yii\web\Controller;
+use yii\web\ForbiddenHttpException;
 
 define('API_KEY', \Yii::$app->modules['telegram']->API_KEY);
 define('BOT_NAME', \Yii::$app->modules['telegram']->BOT_NAME);
@@ -71,6 +73,13 @@ class DefaultController extends Controller
             // Create Telegram API object
             $telegram = new Telegram(API_KEY, BOT_NAME);
 
+            if (!empty(\Yii::$app->modules['telegram']->userCommandsPath)){
+                if(!$commandsPath = realpath(\Yii::getAlias(\Yii::$app->modules['telegram']->userCommandsPath))){
+                    $commandsPath = realpath(\Yii::getAlias('@app') . \Yii::$app->modules['telegram']->userCommandsPath);
+                }
+                if(!is_dir($commandsPath)) throw new UserException('dir ' . \Yii::$app->modules['telegram']->userCommandsPath . ' not found!');
+            }
+            
             // Set webhook
             $result = $telegram->setWebHook(hook_url);
             if ($result->isOk()) {
@@ -82,6 +91,7 @@ class DefaultController extends Controller
         return null;
     }
     public function actionUnsetWebhook(){
+        if (\Yii::$app->user->isGuest) throw new ForbiddenHttpException();
         try {
             // Create Telegram API object
             $telegram = new Telegram(API_KEY, BOT_NAME);
@@ -102,9 +112,15 @@ class DefaultController extends Controller
             // Create Telegram API object
             $telegram = new Telegram(API_KEY, BOT_NAME);
             $basePath = \Yii::$app->getModule('telegram')->basePath;
-            $commandsPath = realpath($basePath . '/Commands/SystemCommands');
-            $telegram->addCommandsPath($commandsPath);
-            $commandsPath = realpath($basePath . '/Commands/UserCommands');
+//            $commandsPath = realpath($basePath . '/Commands/SystemCommands');
+//            $telegram->addCommandsPath($commandsPath);
+            if (!empty(\Yii::$app->modules['telegram']->userCommandsPath)){
+                if(!$commandsPath = realpath(\Yii::getAlias(\Yii::$app->modules['telegram']->userCommandsPath))){
+                    $commandsPath = realpath(\Yii::getAlias('@app') . \Yii::$app->modules['telegram']->userCommandsPath);
+                }
+            }else {
+                $commandsPath = realpath($basePath . '/Commands/UserCommands');
+            }
             $telegram->addCommandsPath($commandsPath);
             // Handle telegram webhook request
             $telegram->handle();

@@ -13,8 +13,9 @@
     }
   ],
   "require": {
+    "php": ">=5.5.0",
     "yiisoft/yii2": ">=2.0.1",
-    "longman/telegram-bot": "^0.34.0"
+    "longman/telegram-bot": "^0.35.0"
   },
   "autoload": {
     "psr-4": {

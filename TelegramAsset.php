@@ -10,7 +10,13 @@ use yii\web\AssetBundle;
 
 class TelegramAsset extends AssetBundle
 {
-    public $sourcePath = __DIR__ . '/assets';
+   
+    public function init()
+    {
+        $this->sourcePath = __DIR__ . '/assets';
+        parent::init();
+    }
+
     public $css = [
         'css/telegram.css',
     ];

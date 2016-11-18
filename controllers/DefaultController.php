@@ -113,15 +113,15 @@ class DefaultController extends Controller
             $telegram = new Telegram(API_KEY, BOT_NAME);
             $basePath = \Yii::$app->getModule('telegram')->basePath;
 //            $commandsPath = realpath($basePath . '/Commands/SystemCommands');
-//            $telegram->addCommandsPath($commandsPath);
+            $commandsPath = realpath($basePath . '/Commands/UserCommands');
+            $telegram->addCommandsPath($commandsPath);
             if (!empty(\Yii::$app->modules['telegram']->userCommandsPath)){
                 if(!$commandsPath = realpath(\Yii::getAlias(\Yii::$app->modules['telegram']->userCommandsPath))){
                     $commandsPath = realpath(\Yii::getAlias('@app') . \Yii::$app->modules['telegram']->userCommandsPath);
                 }
-            }else {
-                $commandsPath = realpath($basePath . '/Commands/UserCommands');
+                $telegram->addCommandsPath($commandsPath);
             }
-            $telegram->addCommandsPath($commandsPath);
+
             // Handle telegram webhook request
             $telegram->handle();
         } catch (TelegramException $e) {

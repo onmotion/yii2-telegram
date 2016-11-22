@@ -121,7 +121,6 @@ class DefaultController extends Controller
                 }
                 $telegram->addCommandsPath($commandsPath);
             }
-
             // Handle telegram webhook request
             $telegram->handle();
         } catch (TelegramException $e) {

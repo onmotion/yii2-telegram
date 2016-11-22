@@ -17,12 +17,16 @@ class m160808_112253_onmotion_yii2_telegram extends Migration
             'action' => $this->string(45),
         ]);
         $this->addPrimaryKey('PK', 'tlgrm_actions', 'chat_id');
+        //upd 22112016
+        $this->addColumn('tlgrm_actions', 'param', $this->string(45));
         
         $this->createTable('tlgrm_auth_mngr_chats', [
             'chat_id' => $this->integer(11),
             'client_chat_id' => $this->string(16)->unique(),
         ]);
         $this->addPrimaryKey('PK', 'tlgrm_auth_mngr_chats', 'chat_id');
+        //upd 22112016
+        $this->addColumn('tlgrm_auth_mngr_chats', 'timestamp', $this->timestamp()->defaultValue('CURRENT_TIMESTAMP'));
         
         $this->createTable('tlgrm_messages', [
             'time' => $this->timestamp(),

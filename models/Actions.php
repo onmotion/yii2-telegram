@@ -13,6 +13,7 @@ use Yii;
  *
  * @property integer $chat_id
  * @property string $action
+ * @property string $param
  */
 class Actions extends \yii\db\ActiveRecord
 {
@@ -41,7 +42,7 @@ class Actions extends \yii\db\ActiveRecord
         return [
             [['chat_id'], 'required'],
             [['chat_id'], 'integer'],
-            [['action'], 'string', 'max' => 45],
+            [['action', 'param'], 'string', 'max' => 45],
         ];
     }
 
@@ -53,6 +54,7 @@ class Actions extends \yii\db\ActiveRecord
         return [
             'chat_id' => 'User ID',
             'action' => 'Action',
+            'param' => 'Parameter',
         ];
     }
 }

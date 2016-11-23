@@ -52,6 +52,15 @@ class YiiChatCommand
                 Request::sendMessage($data);
                 return $message;
             }
+            //delete old chat handlers (who forgot execute /leavedialog)
+            try {
+                $timeBeforeResetChatHandler =  intval(\Yii::$app->modules['telegram']->timeBeforeResetChatHandler);
+                if ($timeBeforeResetChatHandler > 0) {
+                    AuthorizedManagerChat::updateAll(['client_chat_id' => null], ['<', 'timestamp', 'now() - 60 * ' . $timeBeforeResetChatHandler]);
+                }
+            }catch (\Exception $e){
+                var_dump($e->getMessage());
+            }
             //если нет то шлем всем свободным
             $authChats = AuthorizedManagerChat::find()->where(['client_chat_id' => null])->all();
             if (empty($authChats)) {

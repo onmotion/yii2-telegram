@@ -17,6 +17,7 @@ class Module extends \yii\base\Module implements \yii\base\BootstrapInterface
     public $hook_url = null;
     public $PASSPHRASE = null;
     public $userCommandsPath = null;
+    public $timeBeforeResetChatHandler = 0;
     public $db = 'db';
     /**
      * @inheritdoc

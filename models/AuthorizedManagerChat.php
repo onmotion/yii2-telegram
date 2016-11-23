@@ -13,6 +13,7 @@ use Yii;
  *
  * @property integer $chat_id
  * @property integer $client_chat_id
+ * @property string $timestamp
  */
 class AuthorizedManagerChat extends \yii\db\ActiveRecord
 {
@@ -43,6 +44,7 @@ class AuthorizedManagerChat extends \yii\db\ActiveRecord
             [['chat_id'], 'integer'],
             [['client_chat_id'], 'string'],
             [['client_chat_id'], 'unique'],
+            [['timestamp'], 'safe'],
         ];
     }
 

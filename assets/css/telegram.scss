@@ -7,6 +7,9 @@
   bottom: 10px;
   position: fixed;
   right: 10px;
+  border: none;
+  box-shadow: 1px 10px 8px #bbb;
+  z-index: 2;
   #tlgrm-chat-head{
     height: 50px;
     background: #337ab7;

@@ -28,6 +28,7 @@ Run
             'BOT_NAME' => 'YourBotName_bot',
             'hook_url' => 'https://yourhost.com/telegram/default/hook', // must be https!
             'PASSPHRASE' => 'passphrase for login',
+            // 'db' => 'db2', //db file name from config dir
 	        // 'userCommandsPath' => '@app/modules/telegram/UserCommands',
 	        // 'timeBeforeResetChatHandler' => 60
         ]

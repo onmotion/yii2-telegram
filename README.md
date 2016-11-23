@@ -1,4 +1,6 @@
 # **Telegram support Bot for Yii2**
+[![Latest Stable Version](https://poser.pugx.org/onmotion/yii2-telegram/v/stable)](https://packagist.org/packages/onmotion/yii2-telegram) [![Total Downloads](https://poser.pugx.org/onmotion/yii2-telegram/downloads)](https://packagist.org/packages/onmotion/yii2-telegram) [![License](https://poser.pugx.org/onmotion/yii2-telegram/license)](https://packagist.org/packages/onmotion/yii2-telegram) [![Daily Downloads](https://poser.pugx.org/onmotion/yii2-telegram/d/daily)](https://packagist.org/packages/onmotion/yii2-telegram) [![Monthly Downloads](https://poser.pugx.org/onmotion/yii2-telegram/d/monthly)](https://packagist.org/packages/onmotion/yii2-telegram)
+
 **Support chat for site based on Telegram bot**
 
 The Bot logic based on [akalongman/php-telegram-bot](https://github.com/akalongman/php-telegram-bot), so you can read Instructions by longman how to register Telegram Bot and etc.
@@ -25,8 +27,9 @@ Run
             'API_KEY' => 'forexample241875489:AdfgdfFuVJdsKa1cycuxra36g4dfgt66',
             'BOT_NAME' => 'YourBotName_bot',
             'hook_url' => 'https://yourhost.com/telegram/default/hook', // must be https!
-            'PASSPHRASE' => 'passphrase for login'
-	        //  'userCommandsPath' => '@app/modules/telegram/UserCommands'
+            'PASSPHRASE' => 'passphrase for login',
+	        // 'userCommandsPath' => '@app/modules/telegram/UserCommands',
+	        // 'timeBeforeResetChatHandler' => 60
         ]
 	    //more...
      ]
@@ -76,3 +79,5 @@ If you want to limit the storage period of messages history, add to you crontab:
 Also you can use custom commands. To do this, you should copy UserCommands dir from /vendor/onmotion/yii2-telegram/Commands and add path to this in config, for example:
 
     'userCommandsPath' => '@app/modules/telegram/UserCommands'
+
+**timeBeforeResetChatHandler** - the number of minutes before chat handler will be killed (if he forgot do /leavedialog). Never kill if 0 or not setted.

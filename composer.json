@@ -3,7 +3,7 @@
   "description": "Support chat for site based on Telegram bot",
   "type": "yii2-extension",
   "keywords": ["yii2","extension","module","chat", "telegram", "bot"],
-  "license": "GPL-3.0",
+  "license": "MIT",
   "authors": [
     {
       "name": "Alexandr Kozhevnikov",

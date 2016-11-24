@@ -14,7 +14,7 @@ class m160808_112253_onmotion_yii2_telegram extends Migration
     {
         $this->createTable('tlgrm_actions', [
             'chat_id' => $this->integer(11),
-            'action' => $this->string(45),
+            'action' => $this->string(62),
         ]);
         $this->addPrimaryKey('PK', 'tlgrm_actions', 'chat_id');
         

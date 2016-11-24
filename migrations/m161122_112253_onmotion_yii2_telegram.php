@@ -12,7 +12,7 @@ class m161122_112253_onmotion_yii2_telegram extends Migration
     // Use safeUp/safeDown to run migration code within a transaction
     public function safeUp()
     {
-        $this->addColumn('tlgrm_actions', 'param', $this->string(45));
+        $this->addColumn('tlgrm_actions', 'param', $this->string(62));
         $this->addColumn('tlgrm_auth_mngr_chats', 'timestamp', $this->timestamp());
     }
 

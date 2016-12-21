@@ -16,13 +16,13 @@ class m160808_112253_onmotion_yii2_telegram extends Migration
             'chat_id' => $this->integer(11),
             'action' => $this->string(62),
         ]);
-        $this->addPrimaryKey('PK', 'tlgrm_actions', 'chat_id');
+        $this->addPrimaryKey('tlgrm_actions_PK', 'tlgrm_actions', 'chat_id');
         
         $this->createTable('tlgrm_auth_mngr_chats', [
             'chat_id' => $this->integer(11),
             'client_chat_id' => $this->string(16)->unique(),
         ]);
-        $this->addPrimaryKey('PK', 'tlgrm_auth_mngr_chats', 'chat_id');
+        $this->addPrimaryKey('tlgrm_auth_mngr_chats_PK', 'tlgrm_auth_mngr_chats', 'chat_id');
         
         $this->createTable('tlgrm_messages', [
             'time' => $this->timestamp(),
@@ -30,7 +30,7 @@ class m160808_112253_onmotion_yii2_telegram extends Migration
             'message' => $this->string(4100),
             'direction' => $this->smallInteger(1)
         ]);
-        $this->addPrimaryKey('PK', 'tlgrm_messages', 'time');
+        $this->addPrimaryKey('tlgrm_messages_PK', 'tlgrm_messages', 'time');
 
         $this->createTable('tlgrm_usernames', [
             'id' => $this->primaryKey()->notNull(),
@@ -38,7 +38,7 @@ class m160808_112253_onmotion_yii2_telegram extends Migration
             'user_id' => $this->integer(11),
             'username' => $this->string(100)
         ]);
-        $this->createIndex('uniq', 'tlgrm_usernames', ['chat_id', 'user_id', 'username']);
+        $this->createIndex('tlgrm_usernames_uniq', 'tlgrm_usernames', ['chat_id', 'user_id', 'username']);
     }
 
     public function safeDown()

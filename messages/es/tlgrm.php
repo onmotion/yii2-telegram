@@ -27,5 +27,6 @@ return [
     'You will no longer receive messages.' => 'Ya no recibirá mensajes.',
     'Logout from the support system.' => 'Salir del sistema de soporte.',
     'Online support' => 'Soporte en línea',
+    'Write your question...' => 'Escriba su pregunta...',
     " writes:" => ' escribe:'
 ];

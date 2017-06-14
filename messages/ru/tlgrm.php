@@ -26,6 +26,7 @@ return [
 	'You will no longer receive messages.' => 'Вы больше не будете получать сообщения.',
 	'Logout from the support system.' => 'Выход из системы поддержки.',
 	'Online support' => 'Онлайн помощь',
+        'Write your question...' => 'Напишите здесь свой вопрос...',
 	" writes:" => ' пишет:'
 
 ];

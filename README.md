@@ -46,6 +46,8 @@ Run
              'class' => 'onmotion\telegram\Module',
              'API_KEY' => 'forexample241875489:AdfgdfFuVJdsKa1cycuxra36g4dfgt66',
              'BOT_NAME' => 'YourBotName_bot',
+	     'hook_url' => 'https://yourhost.com/telegram/default/hook', // must be https!
+             'PASSPHRASE' => 'passphrase for login',
          ]
      ],       
 

@@ -13,6 +13,12 @@
   #tlgrm-chat-head{
     height: 50px;
     background: #337ab7;
+    #tlgrm-chat-head-caption {
+      color: #fff;
+      position: absolute;
+      top: 15px;
+      left: 15px;
+    }
     #tlgrm-close-btn{
       position: absolute;
       top: 3px;

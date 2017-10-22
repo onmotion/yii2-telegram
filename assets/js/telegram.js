@@ -13,7 +13,7 @@ $(document).ready(function () {
         isInitiated = true;
         $.ajax({
             type: 'post',
-            url: '/telegram/default/init-chat',
+            url: telegramOptions.initChat,
             dataType: 'html',
             success: function success(data) {
                 that.replaceWith(data);
@@ -32,7 +32,7 @@ $(document).ready(function () {
         clearInterval(updater);
         $.ajax({
             type: 'post',
-            url: '/telegram/default/destroy-chat',
+            url: telegramOptions.destroyChat,
             dataType: 'html',
             success: function success(data) {
                 $('#tlgrm-chat').replaceWith(data);
@@ -74,7 +74,7 @@ $(document).ready(function () {
     function getAllMessages() {
         $.ajax({
             type: 'post',
-            url: '/telegram/chat/get-all-messages',
+            url: telegramOptions.getAllMessages,
             data: {},
             dataType: 'json',
             success: function success(data) {
@@ -85,7 +85,7 @@ $(document).ready(function () {
                             appendOutgoing(element);
                     });
                 } else {
-                    appendIncoming({time: "0000-00-00", message: "Напишите здесь свой вопрос..."});
+                    appendIncoming({time: "0000-00-00", message: telegramOptions.initialMessage});
                 }
                 chatFlow.animate({scrollTop: chatFlow[0].scrollHeight}, "slow");
                 getUpdates();
@@ -101,7 +101,7 @@ $(document).ready(function () {
             var lastMsg = $('.tlgrm-msg:last');
             $.ajax({
                 type: 'post',
-                url: '/telegram/chat/get-last-messages',
+                url: telegramOptions.getLastMessages,
                 data: {lastMsgTime: lastMsg.attr('data-time') || null},
                 dataType: 'json',
                 beforeSend: function () {

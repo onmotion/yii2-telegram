@@ -39,11 +39,10 @@ class Telegram extends \yii\base\Widget
         TelegramAsset::register($view);
         $this->renderInitiateBtn();
     }
-    
 
     private function renderInitiateBtn()
     {
-        include (__DIR__ . '/views/default/button.php');
+        echo $this->render('default/button.php');
     }
 
 }

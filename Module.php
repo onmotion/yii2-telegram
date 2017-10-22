@@ -4,8 +4,11 @@
  * @package yii2-telegram
  * Date: 02.08.2016
  */
+
 namespace onmotion\telegram;
+
 use yii\base\UserException;
+use yii\helpers\Url;
 
 /**
  * telegram module definition class
@@ -19,6 +22,8 @@ class Module extends \yii\base\Module implements \yii\base\BootstrapInterface
     public $userCommandsPath = null;
     public $timeBeforeResetChatHandler = 0;
     public $db = 'db';
+    public $options = [];
+
     /**
      * @inheritdoc
      */
@@ -33,6 +38,9 @@ class Module extends \yii\base\Module implements \yii\base\BootstrapInterface
             throw new UserException('You must set API_KEY, BOT_NAME, hook_url');
         if (empty($this->PASSPHRASE))
             throw new UserException('You must set PASSPHRASE');
+
+
+
         parent::init();
 
         // set up i8n
@@ -43,7 +51,15 @@ class Module extends \yii\base\Module implements \yii\base\BootstrapInterface
                 //'forceTranslation' => true,
             ];
         }
-    
+
+        $this->options = [
+            'initChat' => Url::to(['/telegram/default/init-chat']),
+            'destroyChat' => Url::to(['/telegram/default/destroy-chat']),
+            'getAllMessages' => Url::to(['/telegram/chat/get-all-messages']),
+            'getLastMessages' => Url::to(['/telegram/chat/get-last-messages']),
+            'initialMessage' => \Yii::t('tlgrm', 'Write your question...'),
+        ];
+
     }
 
     public function bootstrap($app)

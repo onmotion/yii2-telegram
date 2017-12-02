@@ -26,7 +26,7 @@ Run
             'class' => 'onmotion\telegram\Module',
             'API_KEY' => 'forexample241875489:AdfgdfFuVJdsKa1cycuxra36g4dfgt66',
             'BOT_NAME' => 'YourBotName_bot',
-            'hook_url' => 'https://yourhost.com/telegram/default/hook', // must be https!
+            'hook_url' => 'https://yourhost.com/telegram/default/hook', // must be https! (if not prettyUrl https://yourhost.com/index.php?r=telegram/default/hook)
             'PASSPHRASE' => 'passphrase for login',
             // 'db' => 'db2', //db file name from config dir
 	        // 'userCommandsPath' => '@app/modules/telegram/UserCommands',
@@ -46,7 +46,7 @@ Run
              'class' => 'onmotion\telegram\Module',
              'API_KEY' => 'forexample241875489:AdfgdfFuVJdsKa1cycuxra36g4dfgt66',
              'BOT_NAME' => 'YourBotName_bot',
-	     'hook_url' => 'https://yourhost.com/telegram/default/hook', // must be https!
+	     'hook_url' => 'https://yourhost.com/telegram/default/hook', // must be https! (if not prettyUrl https://yourhost.com/index.php?r=telegram/default/hook)
              'PASSPHRASE' => 'passphrase for login',
          ]
      ],       
@@ -56,7 +56,7 @@ run migrations:
     php yii migrate --migrationPath=@vendor/onmotion/yii2-telegram/migrations #that add 4 tables in your DB
 
 
-go to https://yourhost.com/telegram/default/set-webhook
+go to https://yourhost.com/telegram/default/set-webhook (if not prettyUrl https://yourhost.com/index.php?r=telegram/default/set-webhook)
 
 Now you can place where you want
 

@@ -40,7 +40,7 @@ class ChatController extends Controller
         try {
             $result = YiiChatCommand::sendToAuthorized($postData);
         } catch (TelegramException $e){
-            throw new UserException('The message is empty');
+            throw new UserException($e->getMessage());
         }
        
         return $result;

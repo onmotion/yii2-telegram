@@ -79,8 +79,10 @@ If you want to limit the storage period of messages history, add to you crontab:
     #leave 5 days (if empty - default = 7)
     php yii telegram/messages/clean 5
 
-Also you can use custom commands. To do this, you should copy UserCommands dir from /vendor/onmotion/yii2-telegram/Commands and add path to this in config, for example:
+Also you can use custom commands. To do this, you can copy UserCommands dir from /vendor/onmotion/yii2-telegram/Commands and add path to this in config, for example:
 
     'userCommandsPath' => '@app/modules/telegram/UserCommands'
+    
+don't forget to change namespace according the path (`modules\telegram\UserCommands` in this case). 
 
 **timeBeforeResetChatHandler** - the number of minutes before chat handler will be killed (if he forgot do /leavedialog). Never kill if 0 or not setted.

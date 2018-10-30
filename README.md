@@ -83,6 +83,5 @@ Also you can use custom commands. To do this, you can copy UserCommands dir from
 
     'userCommandsPath' => '@app/modules/telegram/UserCommands'
     
-don't forget to change namespace according the path (`modules\telegram\UserCommands` in this case). 
 
 **timeBeforeResetChatHandler** - the number of minutes before chat handler will be killed (if he forgot do /leavedialog). Never kill if 0 or not setted.

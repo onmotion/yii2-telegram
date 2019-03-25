@@ -55,6 +55,24 @@ run migrations:
 
     php yii migrate --migrationPath=@vendor/onmotion/yii2-telegram/migrations #that add 4 tables in your DB
 
+or add to your config file
+```
+'controllerMap' => [
+    ...
+    'migrate' => [
+        'class' => 'yii\console\controllers\MigrateController',
+        'migrationNamespaces' => [
+            'onmotion\telegram\migrations',
+        ],
+    ],
+    ...
+],
+```
+and run
+
+```
+php yii migrate/up
+```
 
 go to https://yourhost.com/telegram/default/set-webhook (if not prettyUrl https://yourhost.com/index.php?r=telegram/default/set-webhook)
 

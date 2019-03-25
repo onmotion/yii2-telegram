@@ -4,6 +4,8 @@
  * @package yii2-telegram
  * Date: 02.08.2016
  */
+namespace onmotion\telegram\migrations;
+
 use yii\db\Migration;
 
 class m160808_112253_onmotion_yii2_telegram extends Migration
